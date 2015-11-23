@@ -20,8 +20,9 @@ class EchoHandler(socketserver.DatagramRequestHandler):
                 break
             if 'INVITE' in line:
                 self.wfile.write(b"SIP/2.0 100 Trying\r\n\r\nSIP/2.0 180 Ring\r\n\r\nSIP/2.0 200 OK\r\n\r\n")
-            else:
-                self.wfile.write(b"SIP/2.0 400 BAD REQUEST\r\n\r\n")
+            elif 'ACK' in line:
+                print("aqiuiii")
+                print(line)
 
 
 if __name__ == "__main__":
