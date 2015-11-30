@@ -28,10 +28,8 @@ class EchoHandler(socketserver.DatagramRequestHandler):
             sip_login_ip = line.split()[1]
             sip_version = line.split()[2]
 
-            if not 'sip:' in sip_login_ip or not '@' in sip_login_ip:
-                self.wfile.write(b"SIP/2.0 400 Bad Request\r\n\r\n")
-                break
-            if sip_version != 'SIP/2.0':
+            if (not 'sip:' in sip_login_ip or not '@' in sip_login_ip
+                    or sip_version != 'SIP/2.0'):
                 self.wfile.write(b"SIP/2.0 400 Bad Request\r\n\r\n")
                 break
 
